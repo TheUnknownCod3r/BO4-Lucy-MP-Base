@@ -36,7 +36,7 @@
     <li><a href="#contributing">Contributing</a></li>
 	  <li><a href="#changelog">Changelog</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
-    <li><a href=""#mods-using-this">Mods Using The Base</a></li>
+    <li><a href="#mods-using-this">Mods Using The Base</a></li>
   </ol>
 </details>
 

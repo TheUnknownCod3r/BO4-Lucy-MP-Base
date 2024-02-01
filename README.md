@@ -36,7 +36,7 @@
     <li><a href="#contributing">Contributing</a></li>
 	  <li><a href="#changelog">Changelog</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
-    <li><a href="#UsingTheMod">Mods which use this base</a></li>
+    <li><a href="#Mods Using This Base">Mods which use this base</a></li>
   </ol>
 </details>
 
@@ -120,7 +120,7 @@ This wouldn't be possible without the following people
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- Mods using this Menu Base -->
+<!-- UsingTheMod -->
 ## Mods Using This Base
 
 These are mods that are currently utilising this code base.

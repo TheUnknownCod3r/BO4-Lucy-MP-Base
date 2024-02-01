@@ -121,7 +121,7 @@ This wouldn't be possible without the following people
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- UsingTheMod -->
-## ModsUsingThis
+## Mods Using This
 
 These are mods that are currently utilising this code base.
 

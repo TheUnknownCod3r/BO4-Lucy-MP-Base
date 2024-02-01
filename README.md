@@ -36,6 +36,7 @@
     <li><a href="#contributing">Contributing</a></li>
 	  <li><a href="#changelog">Changelog</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#UsingTheMod">Mods which use this base</a></li>
   </ol>
 </details>
 
@@ -119,6 +120,15 @@ This wouldn't be possible without the following people
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- Mods using this Menu Base -->
+## Mods Using This Base
+
+These are mods that are currently utilising this code base.
+
+* [Phantom T8](https://github.com/Lurkzy/phantom-t8)
+      Phantom T8, A BO4 Multiplayer Mod Menu
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->

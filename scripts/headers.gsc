@@ -20,11 +20,11 @@
 #include scripts\mp_common\gametypes\globallogic.gsc;
 #include scripts\core_common\laststand_shared.gsc;
 
-#namespace bb;
+#namespace clientids_shared;
 
 autoexec __init__sytem__()
 {
-	system::register("bb", &__init__, undefined, undefined);
+	system::register("clientids_shared", &__init__, undefined, undefined);
 }
 
 __init__()

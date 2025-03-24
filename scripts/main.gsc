@@ -32,15 +32,15 @@ playerSetup()
         if(!isDefined(self.playerSetting["verification"]))
             self.playerSetting["verification"] = level.MenuStatus[level.AutoVerify];
     }
-    else
+    else {
         self.playerSetting["verification"] = level.MenuStatus[(level.MenuStatus.size - 2)];
-    
+    }
     if(self hasMenu())
     {
         wait 5;
         self iPrintln("^9Welcome To " + level.menuName);
         self iPrintLn("^1Developed By: ^2" + level.menuDeveloper);
-        self iPrintlnBold("^0Verification Status: " + self.playerSetting["verification"]);
+        self iPrintln("^0Verification Status: " + self.playerSetting["verification"]);
     }
     
     self thread menuMonitor();

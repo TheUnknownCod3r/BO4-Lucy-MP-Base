@@ -59,11 +59,11 @@ Visual Studio Code can be obtained [Here](https://code.visualstudio.com/)
 	
 	1. Download a copy of the Repository by clicking Code> Download Zip
 	
-	2. Load Visual Studio Code, Click File, Open Workspace, and load the Project.workspace in the BO4-Lucy-Menu Folder you downloaded
+	2. Load Visual Studio Code, Click File, Open Workspace, and load the Project.workspace in the BO4-Lucy-MP-Base Folder you downloaded
 	
-	3. Load Black Ops 4, Go into a Zombies private match Lobby, and Inject the Menu. Do NOT inject in a Pre game Lobby, You will crash.
+	3. Load Black Ops 4, Go into a Multiplayer CUSTOM Lobby, and Inject the Menu. Do NOT inject while already in game, You will crash.
 	
-	4. Once the game loads, You should be able to Aim and Knife to open the menu. 
+	4. Once the game loads, You should be able to Aim and Knife to open the menu. You will know if it is running as you will see a message on screen.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

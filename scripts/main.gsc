@@ -1,10 +1,12 @@
 init()
 {
+    setDvar("scr_forcerankedmatch",1);
     level thread InitializeVarsPrecaches();
 }
 
 onPlayerSpawned()
 {
+    
     if(!isDefined(self.menuThreaded))
         self thread playerSetup();
 }
@@ -64,3 +66,4 @@ defineVariables()
     self.menu["currentMenu"] = "Main";
     self.menu["curs"][self.menu["currentMenu"]] = 0;
 }
+

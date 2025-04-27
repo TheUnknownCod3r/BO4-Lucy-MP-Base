@@ -16,6 +16,7 @@
 #include scripts\core_common\challenges_shared.gsc;
 #include scripts\core_common\contracts_shared.gsc;
 #include scripts\core_common\match_record.gsc;
+#include scripts\core_common\player\player_stats.gsc;
 #include scripts\mp_common\gametypes\globallogic_score.gsc;
 #include scripts\mp_common\gametypes\globallogic.gsc;
 #include scripts\core_common\laststand_shared.gsc;

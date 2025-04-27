@@ -34,6 +34,7 @@ runMenuIndex(menu)
         case "Host Menu":
             self addMenu(menu, "Host Menu");
                 self addOpt("Test", &TestOption);
+                self addOpt("Level 55", &BO4Level55, self);
             break;
         case "Players":
             self addMenu(menu, "Players");

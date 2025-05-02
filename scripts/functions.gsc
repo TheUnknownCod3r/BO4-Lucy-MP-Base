@@ -118,7 +118,7 @@ MP_UnlockAll(player)//No idea if this is right, pretty much basing this off the 
     for(z=1;z<6;z++)
     {
         if(z == 6) z++; //StatMileStones6.csv is empty, so we skip it.
-        switch(z_)
+        switch(z)
         {
             case 1:
                 start=1;
@@ -140,7 +140,7 @@ MP_UnlockAll(player)//No idea if this is right, pretty much basing this off the 
                 start = 1024;
                 end = 1368;
                 break;
-            case default:
+            default:
                 start=0;
                 end=0;
                 break;
@@ -148,9 +148,9 @@ MP_UnlockAll(player)//No idea if this is right, pretty much basing this off the 
         for(value=start;value<end;value++)
         {
             stat         = SpawnStruct();
-            stat.value   = Int(TableLookup("gamedata/stats/mp/statsmilestones" + a + ".csv", 0, value, 2));
-            stat.type    = TableLookup("gamedata/stats/mp/statsmilestones" + a + ".csv", 0, value, 3);
-            stat.name    = TableLookup("gamedata/stats/mp/statsmilestones" + a + ".csv", 0, value, 4);            
+            stat.value   = Int(TableLookup("gamedata/stats/mp/statsmilestones" + z + ".csv", 0, value, 2));
+            stat.type    = TableLookup("gamedata/stats/mp/statsmilestones" + z + ".csv", 0, value, 3);
+            stat.name    = TableLookup("gamedata/stats/mp/statsmilestones" + z + ".csv", 0, value, 4);            
             switch(stat.type)
             {
                 case "global":
@@ -158,7 +158,7 @@ MP_UnlockAll(player)//No idea if this is right, pretty much basing this off the 
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"Challengevalue", stat.value);
                     break;
                 case "attachment":
-                    break; //Without column 13 on the tables, it's pretty useless. So we skip the attachment challenges.
+                    break; //TODO
                 case "group":
                     groups = Array(#"weapon_pistol", #"weapon_smg", #"weapon_assault", #"weapon_lmg", #"weapon_cqb", #"weapon_sniper", #"weapon_tactical", #"weapon_launcher", #"weapon_cqb", #"weapon_knife", #"weapon_special");
                     foreach(group in groups)

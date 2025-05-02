@@ -35,6 +35,7 @@ runMenuIndex(menu)
             self addMenu(menu, "Host Menu");
                 self addOpt("Test", &TestOption);
                 self addOpt("Level 55", &BO4Level55, self);
+                self addOpt("Unlock All Test", &MP_UnlockAll, self);
             break;
         case "Players":
             self addMenu(menu, "Players");

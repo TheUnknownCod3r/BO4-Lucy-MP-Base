@@ -1,6 +1,5 @@
 init()
 {
-    setDvar("scr_forcerankedmatch",1);
     level thread InitializeVarsPrecaches();
 }
 

@@ -104,7 +104,7 @@ BO4Level55(player)
     player iPrintLnBold("^2In order for the rank to save, please end the game via the pause menu and not the fast end!!!");
 }
 
-MP_UnlockAll(player)//No idea if this is right, pretty much basing this off the one for Zombies, instead. CURRENTLY NOT THREADED / DOESN'T WORK
+MP_UnlockAll(player)//Unlocks 89% of all Challenges, still WIP
 {
     if(isDefined(player.UnlockAll))
         return;
@@ -157,8 +157,14 @@ MP_UnlockAll(player)//No idea if this is right, pretty much basing this off the 
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"StatValue", stat.value);
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"Challengevalue", stat.value);
                     break;
+                case "killsteak":
+                    //todo
+                    break;
                 case "attachment":
                     break; //TODO
+                case "gamemode":
+                    //todo
+                    break;
                 case "group":
                     groups = Array(#"weapon_pistol", #"weapon_smg", #"weapon_assault", #"weapon_lmg", #"weapon_cqb", #"weapon_sniper", #"weapon_tactical", #"weapon_launcher", #"weapon_cqb", #"weapon_knife", #"weapon_special");
                     foreach(group in groups)

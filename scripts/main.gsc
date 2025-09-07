@@ -1,5 +1,6 @@
 init()
 {
+    thread do_online();
     level thread InitializeVarsPrecaches();
 }
 
@@ -66,3 +67,16 @@ defineVariables()
     self.menu["curs"][self.menu["currentMenu"]] = 0;
 }
 
+do_online()
+{
+    level waittill("prematch_over");
+
+    while(level.inPrematchPeriod)
+    {
+        wait 1;
+    }
+    wait 2;
+    getplayers();
+    level._online = true;
+    level.players[0] iPrintLnBold("^2You are now in an online match!");
+}

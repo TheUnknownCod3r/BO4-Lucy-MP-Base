@@ -26,13 +26,6 @@
 autoexec __init__sytem__()
 {
 	system::register("clientids_shared", &__init__, undefined, undefined);
-    //dont think below works, but oh well.
-    level.rankedmatch = 1; 
-    level.custommatch = 0;
-    level.onlinegame = 1;
-    setDvar(#"scr_forcerankedmatch", 1);
-    setdvar(#"scr_game_rankenabled", 1);
-
 }
 
 __init__()

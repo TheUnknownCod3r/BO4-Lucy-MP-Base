@@ -114,7 +114,7 @@ MP_UnlockAll(player)//Unlocks 89% of all Challenges, still WIP
     player iPrintLnBold("Unlock All ^2Started");
     if(player != self)
         self iPrintLnBold(player getName() + ": Unlock All ^2Started");
-    
+    //player thread UnlockAchievs();
     for(z=1;z<6;z++)
     {
         if(z == 6) z++; //StatMileStones6.csv is empty, so we skip it.
@@ -154,21 +154,29 @@ MP_UnlockAll(player)//Unlocks 89% of all Challenges, still WIP
             switch(stat.type)
             {
                 case "global":
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"StatValue", stat.value);
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"Challengevalue", stat.value);
                     break;
                 case "killsteak":
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
+                        player stats::function_d40764f3(stat.name,stat.value);
                     //todo
                     break;
                 case "attachment":
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
+                    player stats::function_dad108fa(stat.name,stat.value);
                     break; //TODO
                 case "gamemode":
+                    player stats::function_bb7eedf0(stat.name,stat.value);
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
                     //todo
                     break;
                 case "group":
                     groups = Array(#"weapon_pistol", #"weapon_smg", #"weapon_assault", #"weapon_lmg", #"weapon_cqb", #"weapon_sniper", #"weapon_tactical", #"weapon_launcher", #"weapon_cqb", #"weapon_knife", #"weapon_special");
                     foreach(group in groups)
                     {
+                        player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
                         player stats::set_stat(#"GroupStats", group, #"stats", stat.name, #"StatValue", stat.value);
                         player stats::set_stat(#"GroupStats", group, #"stats", stat.name, #"Challengevalue", stat.value);
                         wait 0.01;
@@ -179,4 +187,5 @@ MP_UnlockAll(player)//Unlocks 89% of all Challenges, still WIP
             UploadStats(player);
         }
     }
+    player iPrintLnBold("^5Unlock All ^2Complete");
 }

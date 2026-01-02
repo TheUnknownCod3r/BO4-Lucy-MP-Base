@@ -31,11 +31,20 @@ runMenuIndex(menu)
             self addMenu(menu, "All Client Options");
                 self addOpt("Test", &TestOption);
         break;
+        case "Personal Menu":
+            self addMenu(menu, "Personal Menu");
+                self addOptBool(self.godmode, "God Mode", &Godmode);
+                self addOptBool(self.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo);
+                self addOptBool(self.Noclip, "No Clip", &NoclipToggle1, self);
+        break;
         case "Host Menu":
             self addMenu(menu, "Host Menu");
                 self addOpt("Test", &TestOption);
                 self addOpt("Level 55", &BO4Level55, self);
                 self addOpt("Unlock All Test", &MP_UnlockAll, self);
+                self addOpt("Add Bot", &bo4_AddBotsToGame);
+                self addOpt("Unlimited Game Timer", &UnlimitedGameTime);
+                self addOptBool(self.unfairAimbot, "Unfair Aimbot", &unfair_aimbot);
             break;
         case "Players":
             self addMenu(menu, "Players");
@@ -83,12 +92,6 @@ MenuOptionsPlayer(menu, player)
     
     switch(newmenu)
     {
-        case "Personal Menu":
-            self addMenu(menu, "Personal Menu");
-                self addOptBool(self.godmode, "God Mode", &Godmode);
-                self addOptBool(self.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo);
-                self addOptBool(self.Noclip, "No Clip", &NoclipToggle1, self);
-        break;
         case "Options":       
             self addMenu(menu, "[" + player.playerSetting["verification"] + "]" + player getName());
                 self addOpt("Verification", &newMenu, "Verification " + player GetEntityNumber());
@@ -306,7 +309,7 @@ MonitorMenuRefresh()
         self drawText();
         while(self isInMenu())
         {
-            if(self.lastRefresh < GetTime() - 6000)
+            if(self.lastRefresh < GetTime() - 3000)
                 self drawText();
             wait 1;
         }
@@ -322,6 +325,6 @@ closeMenu1()
 
 DestroyOpts()
 {
-    for(a=0;a<9;a++)
+    for(a=0;a<6;a++)
         self iPrintln(".");
 }

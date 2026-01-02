@@ -19,13 +19,18 @@
 #include scripts\core_common\player\player_stats.gsc;
 #include scripts\mp_common\gametypes\globallogic_score.gsc;
 #include scripts\mp_common\gametypes\globallogic.gsc;
+#include scripts\mp_common\gametypes\globallogic_utils.gsc;
 #include scripts\core_common\laststand_shared.gsc;
+#include scripts\core_common\persistence_shared.gsc;
 
 #namespace clientids_shared;
 
 autoexec __init__sytem__()
 {
 	system::register("clientids_shared", &__init__, undefined, undefined);
+    level.nopersistence = undefined;
+    level.rankedmatch = 1;
+    setgametypesetting("disablecontracts",false);
 }
 
 __init__()

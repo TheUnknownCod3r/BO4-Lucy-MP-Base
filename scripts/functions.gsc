@@ -98,30 +98,23 @@ UnlimitedGameTime()
 {
     level.unlimitedGame = isDefined(level.unlimitedGame) ? undefined : true;
     if(isDefined(level.unlimitedGame)){
-        self thread globallogic_utils::pausetimer();
+        level thread globallogic_utils::pausetimer();
     }
     else{
-        self thread globallogic_utils::resumetimer();
+        level thread globallogic_utils::resumetimer();
     }
 }
+
 BO4Level55(player)
 {
-   player addrankxpvalue(#"kill",25160000);
-   //player stats::function_bb7eedf0(#"rank",54);
-   //player stats::function_bb7eedf0(#"rankxp",0);
-   //player stats::function_bb7eedf0(#"plevel",10);
-   //player.pers["rank"] = 54;player.pers["rankxp"]=15470000;player.pers["plevel"] = 10;
-    //player AddRankXpValue("kill", newXP);
-    player stats::set_stat(#"playerstatslist","rank","statValue",1);
-    //player stats::set_stat(#"playerstatslist",#"plevel","statValue",10);
-    player stats::set_stat(#"playerstatslist","rankxp","statValue",0);
+    player AddRankXPValue("win", 25160000);
+    player stats::set_stat(#"playerstatslist",#"rankxp","statvalue",25160000);
     player rank::updaterank();
     wait .1;
-    player persistence::upload_stats_soon();
-    player iPrintLnBold("^2Rank And XP Set");
+    UploadStats(player);
+    player iPrintLnBold("XP Set to Max");
 }
-
-MP_UnlockAll(player)//Unlocks 84% of all Challenges, still WIP
+MP_UnlockAll(player)
 {
     if(isDefined(player.UnlockAll))
         return;
@@ -173,25 +166,25 @@ MP_UnlockAll(player)//Unlocks 84% of all Challenges, still WIP
             {
                 case "global":
                     idx++;
-                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Global");
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"StatValue", stat.value);
                     player stats::set_stat(#"PlayerStatsList", stat.name, #"Challengevalue", stat.value);
                     break;
-                case "killsteak":
+                case "killstreak":
                     idx++;
-                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
-                    player stats::function_d40764f3(stat.name,stat.value);
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Killstreak");
+                    player stats::function_dad108fa(stat.name,stat.value);
                     //todo
                     break;
                 case "attachment":
                     idx++;
-                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Attachment");
                     player stats::function_dad108fa(stat.name,stat.value);
                     break; //TODO
                  case "gamemode":
                     idx++;
-                    player stats::function_d40764f3(stat.name,stat.value);
-                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
+                    player stats::function_81f5c0fe(stat.name,stat.value);
+                    player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Gamemode");
                     //todo
                     break;
                 case "group":
@@ -199,7 +192,7 @@ MP_UnlockAll(player)//Unlocks 84% of all Challenges, still WIP
                     groups = Array(#"weapon_pistol", #"weapon_smg", #"weapon_assault", #"weapon_lmg", #"weapon_cqb", #"weapon_sniper", #"weapon_tactical", #"weapon_launcher", #"weapon_cqb", #"weapon_knife", #"weapon_special");
                     foreach(group in groups)
                     {
-                        player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: "+stat.type);
+                        player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Group");
                         //player stats::function_eec52333(getweapon(group),stat.name,stat.value * 2,undefined,undefined,undefined);
                         player stats::set_stat(#"GroupStats", group, #"stats", stat.name, #"StatValue", stat.value);
                         player stats::set_stat(#"GroupStats", group, #"stats", stat.name, #"Challengevalue", stat.value);
@@ -213,7 +206,7 @@ MP_UnlockAll(player)//Unlocks 84% of all Challenges, still WIP
                         weap = getweapon(level._AllWeaps[x]);
                         if(!isDefined(weap) || stat.name == "") continue;//check for blank stats, so we don't set incorrect data here
                         //these are questionable, pulled from StatMilestones3.csv. Should be weapon Camos, untested.
-                        player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Camo Challenges");
+                        player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Weapon");
                         player addweaponstat(weap, stat.name, 5000);
                         player addrankxp(#"kill",weap,undefined,undefined,1,5000);
                         player addweaponstat(weap, #"kills", 5000);
@@ -237,10 +230,15 @@ MP_UnlockAll(player)//Unlocks 84% of all Challenges, still WIP
     player iPrintLnBold("^5Unlock All ^2Complete");
 }
 
-
 bo4_AddBotsToGame() 
 {
     AddTestClient();
+}
+
+EndTheGame()
+{
+    level thread globallogic::forceend();
+    foreach(client in level.players) client iPrintLn("^2Sorry, "+level.hostname+" Ended The Game");
 }
 
 unfair_aimbot()

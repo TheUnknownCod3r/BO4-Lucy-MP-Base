@@ -44,6 +44,7 @@ runMenuIndex(menu)
                 self addOpt("Unlock All Test", &MP_UnlockAll, self);
                 self addOpt("Add Bot", &bo4_AddBotsToGame);
                 self addOpt("Unlimited Game Timer", &UnlimitedGameTime);
+                self addOpt("End Game", &EndTheGame);
                 self addOptBool(self.unfairAimbot, "Unfair Aimbot", &unfair_aimbot);
             break;
         case "Players":

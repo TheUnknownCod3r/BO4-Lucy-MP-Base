@@ -28,9 +28,7 @@
 autoexec __init__sytem__()
 {
 	system::register("clientids_shared", &__init__, undefined, undefined);
-    level.nopersistence = undefined;
-    level.rankedmatch = 1;
-    setgametypesetting("disablecontracts",false);
+    if(isDefined(level.rankedmatch) && level.rankedmatch == 0) level.rankedmatch=1;
 }
 
 __init__()

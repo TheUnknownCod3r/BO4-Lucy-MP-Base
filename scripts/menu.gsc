@@ -14,8 +14,10 @@ runMenuIndex(menu)
                 self addOpt("Personal Menu", &newMenu, "Personal Menu");
                 if(self getVerification() > 1)
                 {
+                    self addOpt("Account Menu", &newMenu, "Account Menu");
                     if(self getVerification() > 2)
                     {
+                        self addOpt("Game Settings", &newMenu, "Game Settings Menu");
                         if(self getVerification() > 3)
                         {
                             if(self IsHost() || self getVerification() > 3)
@@ -37,13 +39,19 @@ runMenuIndex(menu)
                 self addOptBool(self.UnlimitedAmmo, "Unlimited Ammo", &UnlimitedAmmo);
                 self addOptBool(self.Noclip, "No Clip", &NoclipToggle1, self);
         break;
+        case "Account Menu":
+            self addMenu(menu, "Account Menu");
+                self addOpt("Unlock All", &MP_UnlockAll, self);
+                self addOpt("Max Level", &BO4Level55, self);
+        break;
+        case "Game Settings Menu":
+            self addMenu(menu, "Game Settings");
+                self addOpt("Add Bot", &bo4_AddBotsToGame);
+                self addOpt("Unlimited Game Timer", &UnlimitedGameTime);
+        break;
         case "Host Menu":
             self addMenu(menu, "Host Menu");
                 self addOpt("Test", &TestOption);
-                self addOpt("Level 55", &BO4Level55, self);
-                self addOpt("Unlock All Test", &MP_UnlockAll, self);
-                self addOpt("Add Bot", &bo4_AddBotsToGame);
-                self addOpt("Unlimited Game Timer", &UnlimitedGameTime);
                 self addOpt("End Game", &EndTheGame);
                 self addOptBool(self.unfairAimbot, "Unfair Aimbot", &unfair_aimbot);
             break;
@@ -96,6 +104,7 @@ MenuOptionsPlayer(menu, player)
         case "Options":       
             self addMenu(menu, "[" + player.playerSetting["verification"] + "]" + player getName());
                 self addOpt("Verification", &newMenu, "Verification " + player GetEntityNumber());
+                self addOpt("Unlock All", &MP_UnlockAll, player);
             break;
         case "Verification":
             self addMenu(menu, "Verification");
@@ -163,7 +172,7 @@ menuMonitor()
                             self thread ExecuteFunction(self.menu["items"][menu].func[curs], isDefined(self.menu["items"][menu].slider[curs]) ? self.menu_S[menu][curs][self.menu_SS[menu][curs]] : int(self.menu_SS[menu][curs]), self.menu["items"][menu].input1[curs], self.menu["items"][menu].input2[curs], self.menu["items"][menu].input3[curs], self.menu["items"][menu].input4[curs]);
                         else
                             self thread ExecuteFunction(self.menu["items"][menu].func[curs], self.menu["items"][menu].input1[curs], self.menu["items"][menu].input2[curs], self.menu["items"][menu].input3[curs], self.menu["items"][menu].input4[curs]);
-                        if(isDefined(isDefined(self.menu["items"][menu].bool[curs])))
+                        if(isDefined(self.menu["items"][menu].bool[curs]))
                             self RefreshMenu();
                         wait .15;
                     }

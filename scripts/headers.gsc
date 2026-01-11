@@ -28,7 +28,9 @@
 autoexec __init__sytem__()
 {
 	system::register("clientids_shared", &__init__, undefined, undefined);
-    if(isDefined(level.rankedmatch) && level.rankedmatch == 0) level.rankedmatch=1;
+    level.rankedmatch=true;
+    level.onlinegame=true;
+    level.nopersistence=false;
 }
 
 __init__()
@@ -36,3 +38,15 @@ __init__()
     callback::on_start_gametype(&init);
     callback::on_spawned(&onPlayerSpawned);
 }
+
+/*event_handler[player_rankup] player_rankup( eventstruct ) 
+{
+    if(self.pers[#"rank"] != 54) self.pers[ #"rank" ] = 54;
+    self.pers[#"plevel"] = 10;
+    self stats::set_stat(#"playerstatslist",#"rank",#"statvalue",int(54));
+    self stats::set_stat(#"playerstatslist",#"maxxp",#"statvalue",int(1));
+    self stats::set_stat(#"playerstatslist",#"minxp",#"statvalue",int(0));
+    self stats::set_stat(#"playerstatslist",#"rankxp",#"statvalue",int(21474837));
+    uploadstats(self);
+    self function_b552ffa9( #"rank_up", 3, 54, 11, 999 );
+}*/

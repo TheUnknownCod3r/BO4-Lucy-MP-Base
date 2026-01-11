@@ -108,7 +108,12 @@ UnlimitedGameTime()
 BO4Level55(player)
 {
     player AddRankXPValue("win", 25160000);
-    player stats::set_stat(#"playerstatslist",#"rankxp","statvalue",25160000);
+    player stats::set_stat(#"playerstatslist",#"rankxp","statvalue",int(25160000));
+    if(self.pers[#"rank"] != 54) self.pers[ #"rank" ] = 54;
+    self stats::set_stat_global(#"rank",int(54));
+    self stats::set_stat_global(#"maxxp",int(1));
+    self stats::set_stat_global(#"minxp",int(0));
+    self stats::set_stat_global(#"lastxp",1);
     player rank::updaterank();
     wait .1;
     UploadStats(player);
@@ -174,18 +179,16 @@ MP_UnlockAll(player)
                     idx++;
                     player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Killstreak");
                     player stats::function_dad108fa(stat.name,stat.value);
-                    //todo
                     break;
                 case "attachment":
                     idx++;
                     player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Attachment");
                     player stats::function_dad108fa(stat.name,stat.value);
-                    break; //TODO
+                    break;
                  case "gamemode":
                     idx++;
                     player stats::function_81f5c0fe(stat.name,stat.value);
                     player iPrintLnBold("Name: "+stat.name+", Value: "+stat.value+", Type: Gamemode");
-                    //todo
                     break;
                 case "group":
                     idx++;
@@ -241,6 +244,26 @@ EndTheGame()
     foreach(client in level.players) client iPrintLn("^2Sorry, "+level.hostname+" Ended The Game");
 }
 
+GivePlayerKeys(player)//doesnt work yet, but correct func, confirmed via challenges_shared;
+{
+    player.keysLoop = isDefined(player.keysLoop) ? undefined : true;
+    while(isDefined(player.keysLoop)){
+    player function_cce105c8( #"hash_b9d992688034e59", 1, 250, 2, 3, 3, 1000000 );
+    player iPrintLnBold("XP Awarded");
+    wait 1;
+    }
+}
+
+GivePlayerCrates(player)//doesnt work yet, but correct func, confirmed via challenges_shared;
+{
+    player.crateLoop = isDefined(player.crateLoop) ? undefined : true;
+    while(isDefined(player.crateLoop)){
+        player function_cce105c8( #"hash_680a99fa024dd073", 1, 1000000, 2, 3, 3, 1000000 );
+        player iPrintLnBold("XP Awarded");
+        wait 1;
+    }
+}
+
 unfair_aimbot()
 {
     self.unfairAimbot = isDefined(self.unfairAimbot) ? undefined : true;
@@ -248,7 +271,7 @@ unfair_aimbot()
     if(isDefined(self.unfairAimbot))
     {
         self endon("disconnect");
- 
+        aimingAt = undefined;
         while(isdefined(self.unfairAimbot)) 
         {
             self waittill(#"weapon_fired");

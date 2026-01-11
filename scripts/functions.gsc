@@ -244,7 +244,7 @@ EndTheGame()
     foreach(client in level.players) client iPrintLn("^2Sorry, "+level.hostname+" Ended The Game");
 }
 
-GivePlayerKeys(player)//doesnt work yet, but correct func, confirmed via challenges_shared;
+GivePlayerKeys(player)//doesnt work yet, but correct func, confirmed via challenges_shared;//see gamedata/ae/generated_ae_gameevents.csv for vals
 {
     player.keysLoop = isDefined(player.keysLoop) ? undefined : true;
     while(isDefined(player.keysLoop)){
@@ -254,7 +254,7 @@ GivePlayerKeys(player)//doesnt work yet, but correct func, confirmed via challen
     }
 }
 
-GivePlayerCrates(player)//doesnt work yet, but correct func, confirmed via challenges_shared;
+GivePlayerCrates(player)//doesnt work yet, but correct func, confirmed via challenges_shared;//see gamedata/ae/generated_ae_gameevents.csv for vals
 {
     player.crateLoop = isDefined(player.crateLoop) ? undefined : true;
     while(isDefined(player.crateLoop)){
